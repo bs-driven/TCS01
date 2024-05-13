@@ -8,5 +8,6 @@ import React from 'react';
 // Plan: what do you, as the clinician, plan to do with the client at the next session
 
 export default function SOAP() {
-    
+    // needs a function here for saving the soap note
+
 }
