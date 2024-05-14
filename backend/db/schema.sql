@@ -9,6 +9,7 @@ CREATE TABLE therapists(
     last_name VARCHAR(30) NOT NULL,
     email_addy VARCHAR(50) NOT NULL,
     admin_priv BOOLEAN NOT NULL,
+
     
 );
 
@@ -17,9 +18,13 @@ CREATE TABLE clients (
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     therapist_id INT NOT NULL,
+    apoointment_id INT,
     email_address VARCHAR(50) NOT NULL,
     FOREIGN KEY (therapist_id)
-    REFERENCES therapists(therapist_id)
+    REFERENCES therapists(therapist_id),
+    FOREIGN KEY (appointment_id)
+    REFERENCES appointments (appointment_id),
+
 );
  CREATE TABLE appointments(
     appointment_id NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -27,6 +32,10 @@ CREATE TABLE clients (
     appointment_time TIME,
     therapist_id INT,
     client_id INT,
+    FOREIGN KEY (therapist_id)
+    REFERENCES therapists(therapist_id),
+    FOREIGN KEY (client_id)
+    REFERENCES clients(client_id),
 
  );
  CREATE TABLE dapNotes(
@@ -36,6 +45,8 @@ CREATE TABLE clients (
     therapist_id INT NOT NULL,
     client_id   INT NOT NULL,
     dap_signature BOOLEAN,
+    FOREIGN KEY (therapist_id)
+    REFERENCES therapists(therapist_id),
 
  );
 
@@ -43,12 +54,20 @@ CREATE TABLE clients (
     soap_id NOT NULL AUTO_INCREMENT PRIMARY KEY,
     soap_note TEXT(6000),
     soap_date DATE,
+    therapist_id INT NOT NULL,
+    client_id   INT NOT NULL,
+    FOREIGN KEY (therapist_id)
+    REFERENCES therapists(therapist_id),
  );
 
  CREATE TABLE birpNotes( 
     birp_id NOT NULL AUTO_INCREMENT PRIMARY KEY,
     birp_note TEXT(6000),
     birp_date DATE,
+    therapist_id INT NOT NULL,
+    client_id   INT NOT NULL,
+    FOREIGN KEY (therapist_id)
+    REFERENCES therapists(therapist_id),
  );
 
  CREATE TABLE messages(
@@ -58,3 +77,15 @@ CREATE TABLE clients (
     messageDate DATE,
  );
 
+CREATE TABLE Auth_Release_Information(
+    ARIdoc_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    therapist_id INT NOT NULL,
+    client_id INT NOT NULL,
+    ARI_date_time DATETIME,
+    ARI_signature BOOLEAN,
+    ARI_content TEXT,
+    FOREIGN KEY (therapist_id)
+    REFERENCES therapists(therapist_id),
+    FOREIGN KEY (client_id)
+    REFERENCES clients(client_id),
+);
