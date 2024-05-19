@@ -105,3 +105,7 @@ CREATE TABLE Auth_Release_Information(
     REFERENCES clients(client_id),
 
 );
+CREATE TABLE consent_to_treatment_form(
+   treatment_consent_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   treatment_consent_timeDate DATETIME,
+)
