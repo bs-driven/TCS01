@@ -9,9 +9,9 @@ CREATE TABLE therapists(
     last_name VARCHAR(30) NOT NULL,
     email_addy VARCHAR(50) NOT NULL,
     admin_priv BOOLEAN NOT NULL,
-    clientlist_id INT,
+    clientList_id INT,
     therapist_license VARCHAR(45),
-    FOREIGN KEY (clientlist_id)
+    FOREIGN KEY (clientList_id)
     REFERENCES clients(client_id),
 
 );

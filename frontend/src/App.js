@@ -1,3 +1,5 @@
+import React from 'react';
+import BIRP from "./components/notes/BIRP";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import './App.css';
